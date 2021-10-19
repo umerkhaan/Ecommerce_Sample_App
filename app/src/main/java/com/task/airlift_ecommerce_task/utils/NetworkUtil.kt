@@ -4,10 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
-/*
- * Created by SDD-17 on 25-Apr-19.
- */
-
 object NetworkUtil {
     private const val TYPE_WIFE = 1
     private const val TYPE_MOBILE = 2

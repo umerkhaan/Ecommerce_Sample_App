@@ -4,10 +4,6 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-/*
- * Created by SDD-17 on 25-Apr-19.
- */
-
 object TimeDateUtil {
     enum class Format(val format: String) {
         DATE("yyyy-MM-dd"), DATE_DISPLAY("dd MMM yyyy"), TIME("hh:mm a"), DATE_TIME("dd MMM yyyy - hh:mm a"), FULL(

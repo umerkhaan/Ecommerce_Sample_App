@@ -2,10 +2,6 @@ package com.task.airlift_ecommerce_task.utils
 
 import android.os.Build
 
-/*
- * Created by Umer on 25-May-19.
- */
-
 object ApiVersionUtil {
     val isR: Boolean
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
@@ -28,11 +24,11 @@ object ApiVersionUtil {
     val isMarshmallow: Boolean
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
-    val isLollipop: Boolean
-        get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-
     val isLollipopMR1: Boolean
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1
+
+    val isLollipop: Boolean
+        get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
     val isKitkat: Boolean
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT

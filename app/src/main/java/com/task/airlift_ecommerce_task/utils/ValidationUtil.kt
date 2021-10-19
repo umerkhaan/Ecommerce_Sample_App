@@ -4,10 +4,6 @@ import java.util.regex.Pattern
 import android.text.TextUtils
 
 
-/*
- * Created by SDD-17 on 25-Apr-19.
- */
-
 object ValidationUtil {
     private const val IP_ADDRESS_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
             "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +

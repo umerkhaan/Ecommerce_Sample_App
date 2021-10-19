@@ -6,11 +6,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 
-
-/*
- * Created by SDD-17 on 25-Apr-19.
- */
-
 object SingleToastUtil {
     private var toast: Toast? = null
 

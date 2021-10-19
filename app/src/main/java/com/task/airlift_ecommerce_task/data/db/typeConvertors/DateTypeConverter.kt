@@ -1,11 +1,7 @@
-package com.app.realtec.pos.data.room.typeConvertors
+package com.task.airlift_ecommerce_task.data.db.typeConvertors
 
 import androidx.room.TypeConverter
 import java.util.*
-
-/*
- * Created by SDD-17 on 04-Dec-19.
- */
 
 object DateTypeConverter {
     @TypeConverter
