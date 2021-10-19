@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#181818</color>
+    <color name="colorPrimaryVariant">#181818</color>
+    <color name="colorOnPrimary">@color/colorWhite</color>
+
+    <color name="colorBackground">#212121</color>
+    <color name="colorBackgroundSecondary">#2E2D2D</color>
+
+    <color name="colorTextPrimary">@color/colorOnPrimary</color>
+    <color name="colorTextPrimaryInverse">@color/colorPrimary</color>
+    <color name="colorTextSecondary">#CCCCCC</color>
+    <color name="colorTextSecondaryInverse">#3d3d3d</color>
+
+    <color name="colorContent">@color/colorWhite</color>
+    <color name="colorContentInverse">#222222</color>
+</resources>

@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">airlift_ecommerce_task</string>
+    <string name="app_name">Ecommerce Task</string>
+
+    <string name="home">Home</string>
+    <string name="categories">Categories</string>
+    <string name="cart">Cart</string>
 </resources>

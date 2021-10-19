@@ -22,8 +22,8 @@ data class Product(
     var category: String,
     @ColumnInfo(name = "image")
     var image: String? = null,
-    @ColumnInfo(name = "image")
+    @ColumnInfo(name = "rating")
     var rating: Double? = null,
-    @ColumnInfo(name = "image")
+    @ColumnInfo(name = "ratingCount")
     var ratingCount: Int? = null
 ) : Parcelable

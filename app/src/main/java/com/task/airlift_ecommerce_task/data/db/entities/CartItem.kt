@@ -17,6 +17,6 @@ data class CartItem(
     var productId: Int,
     @ColumnInfo(name = "quantity")
     var quantity: Int,
-    @ColumnInfo(name = "quantity")
+    @ColumnInfo(name = "dateTime")
     var dateTime: Date
 ) : Parcelable

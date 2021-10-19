@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/activity_splash.xml" value="0.24010416666666667" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_cart.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_categories.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_product_details.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_products.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

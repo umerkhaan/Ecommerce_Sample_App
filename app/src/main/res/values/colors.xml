@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryVariant">#FFFFFF</color>
+    <color name="colorOnPrimary">#181818</color>
+    <color name="colorAccent">#4CAF50</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorBackgroundSecondary">#E4E4E4</color>
+
+    <color name="colorTextPrimary">@color/colorOnPrimary</color>
+    <color name="colorTextPrimaryInverse">@color/colorWhite</color>
+    <color name="colorTextSecondary">#3d3d3d</color>
+    <color name="colorTextSecondaryInverse">#CCCCCC</color>
+
+    <color name="colorContent">#222222</color>
+    <color name="colorContentInverse">#dadada</color>
+
+    <!-- ============= -->
+    <!-- Common Colors -->
+    <!-- ============= -->
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDullBlack">#131313</color>
+    <color name="colorBlackA80">#CC000000</color>
+    <color name="colorBlackA70">#B3000000</color>
+    <color name="colorBlackA60">#99000000</color>
+    <color name="colorBlackA50">#80000000</color>
+    <color name="colorBlackA40">#66000000</color>
+    <color name="colorBlackA30">#4D000000</color>
+    <color name="colorBlackA20">#32000000</color>
+    <color name="colorBlackA12">#1F000000</color>
+    <color name="colorDarkGrey">#353535</color>
+    <color name="colorDarkGreyA70">#B3252525</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorDullWhite">#dadada</color>
+    <color name="colorGrey">#979797</color>
+    <color name="colorWhiteA80">#CCFFFFFF</color>
+    <color name="colorWhiteA70">#B3FFFFFF</color>
+    <color name="colorWhiteA60">#99FFFFFF</color>
 </resources>
