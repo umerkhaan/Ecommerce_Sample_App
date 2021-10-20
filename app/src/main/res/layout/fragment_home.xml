@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.task.airlift_ecommerce_task.ui.fragments.home.HomeViewModel" />
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,20 +22,121 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="@dimen/_2sdp"
+            android:padding="@dimen/_5sdp"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/iv_marker"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:contentDescription="@string/location"
+                android:src="@drawable/ic_marker"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorAccent" />
 
+            <TextView
+                android:id="@+id/tv_deliver_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/deliver_to"
+                android:textColor="@color/colorTextPrimary"
+                app:layout_constraintStart_toEndOf="@id/iv_marker"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/address"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toEndOf="@id/iv_marker"
+                app:layout_constraintStart_toStartOf="@id/tv_deliver_to"
+                app:layout_constraintTop_toBottomOf="@id/tv_deliver_to" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home Fragment"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:isRefreshing="@={viewModel.refreshing}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/lyt_toolbar">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/lyt_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_shop_by_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/shop_by_category"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/btn_view_all_categories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="@string/view_all"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_categories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_shop_by_category" />
+
+                    <TextView
+                        android:id="@+id/tv_recommended"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/recommended_for_you"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rv_categories" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_recommended" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

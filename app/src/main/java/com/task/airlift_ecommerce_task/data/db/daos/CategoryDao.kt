@@ -8,4 +8,7 @@ import com.task.airlift_ecommerce_task.data.db.entities.Category
 interface CategoryDao : BaseDao<Category> {
     @Query("SELECT * FROM tbl_category ORDER BY _id DESC")
     suspend fun getAllCategories(): List<Category>
+
+    @Query("DELETE FROM tbl_category")
+    suspend fun deleteAllRecords()
 }

@@ -1,6 +1,7 @@
 package com.task.airlift_ecommerce_task.data
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.task.airlift_ecommerce_task.data.db.AppDatabase
 import com.task.airlift_ecommerce_task.data.db.entities.CartItem
 import com.task.airlift_ecommerce_task.data.db.entities.Category
@@ -59,6 +60,8 @@ class DataRepository @Inject constructor(
         // Category related methods
         fun insertCategories(categories: List<String>, callback: (() -> Unit)? = null) {
             coroutineScope.launch {
+                appDatabase.getCategoryDao().deleteAllRecords()
+
                 categories.forEach {
                     val category = Category(
                         title = it,
@@ -98,14 +101,8 @@ class DataRepository @Inject constructor(
         }
 
         // Cart related methods
-        fun getCartItemsCount(callback: (count: Int) -> Unit) {
-            coroutineScope.launch {
-                val count = appDatabase.getCartItemDao().getCartItemsCount()
-
-                launch(Dispatchers.Main) {
-                    callback(count)
-                }
-            }
+        fun getCartItemsCount(): LiveData<Int> {
+            return appDatabase.getCartItemDao().getCartItemsCount()
         }
 
         fun getCartItems(callback: (cartItems: List<CartItem>) -> Unit) {
@@ -126,7 +123,7 @@ class DataRepository @Inject constructor(
                     cartItem?.apply {
                         quantity++
 
-                        appDatabase.getCartItemDao().insert(this)
+                        appDatabase.getCartItemDao().update(this)
                     } ?: run {
                         appDatabase.getCartItemDao().insert(
                             CartItem(
@@ -159,8 +156,19 @@ class DataRepository @Inject constructor(
 
         fun removeProductFromCart(id: Int, callback: (() -> Unit)? = null) {
             coroutineScope.launch {
-                appDatabase.getCartItemDao().removeProductFromCart(id)
-                appDatabase.getProductDao().removeProduct(id)
+                val cartItem = appDatabase.getCartItemDao().getCartItemByProductId(id)
+                cartItem?.apply {
+                    if (quantity == 1) {
+                        appDatabase.getCartItemDao().removeProductFromCart(id)
+                        appDatabase.getProductDao().removeProduct(id)
+                    } else if (quantity > 1) {
+                        quantity--
+
+                        appDatabase.getCartItemDao().update(this)
+                    }
+                } ?: run {
+                    appDatabase.getProductDao().removeProduct(id)
+                }
 
                 launch(Dispatchers.Main) {
                     callback?.let {
@@ -191,7 +199,8 @@ class DataRepository @Inject constructor(
         fun login(
             userName: String,
             password: String,
-            onResponse: (responseLogin: ResponseLogin?) -> Unit
+            onResponse: (responseLogin: ResponseLogin?) -> Unit,
+            onFailure: ((error: String?) -> Unit)? = null
         ) {
             val requestLogin = RequestLogin(userName, password)
 
@@ -206,13 +215,18 @@ class DataRepository @Inject constructor(
                     exception.printStackTrace()
 
                     launch(Dispatchers.Main) {
-                        onResponse(null)
+                        onFailure?.let {
+                            it(exception.message)
+                        }
                     }
                 }
             }
         }
 
-        fun getAllCategories(onResponse: (categories: List<String>?) -> Unit) {
+        fun getAllCategories(
+            onResponse: (categories: List<String>?) -> Unit,
+            onFailure: ((error: String?) -> Unit)? = null
+        ) {
             coroutineScope.launch {
                 try {
                     val response = backendApi.getAllCategories().await()
@@ -224,13 +238,18 @@ class DataRepository @Inject constructor(
                     exception.printStackTrace()
 
                     launch(Dispatchers.Main) {
-                        onResponse(null)
+                        onFailure?.let {
+                            it(exception.message)
+                        }
                     }
                 }
             }
         }
 
-        fun getAllProducts(onResponse: (products: List<ResponseProduct>?) -> Unit) {
+        fun getAllProducts(
+            onResponse: (products: List<ResponseProduct>?) -> Unit,
+            onFailure: ((error: String?) -> Unit)? = null
+        ) {
             coroutineScope.launch {
                 try {
                     val response = backendApi.getAllProducts().await()
@@ -242,7 +261,9 @@ class DataRepository @Inject constructor(
                     exception.printStackTrace()
 
                     launch(Dispatchers.Main) {
-                        onResponse(null)
+                        onFailure?.let {
+                            it(exception.message)
+                        }
                     }
                 }
             }
@@ -250,7 +271,8 @@ class DataRepository @Inject constructor(
 
         fun getProductsByCategory(
             category: String,
-            onResponse: (products: List<ResponseProduct>?) -> Unit
+            onResponse: (products: List<ResponseProduct>?) -> Unit,
+            onFailure: ((error: String?) -> Unit)? = null
         ) {
             coroutineScope.launch {
                 try {
@@ -263,7 +285,9 @@ class DataRepository @Inject constructor(
                     exception.printStackTrace()
 
                     launch(Dispatchers.Main) {
-                        onResponse(null)
+                        onFailure?.let {
+                            it(exception.message)
+                        }
                     }
                 }
             }

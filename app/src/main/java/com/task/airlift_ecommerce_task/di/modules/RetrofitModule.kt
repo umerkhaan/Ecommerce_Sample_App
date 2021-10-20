@@ -1,5 +1,6 @@
 package com.task.airlift_ecommerce_task.di.modules
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.task.airlift_ecommerce_task.BuildConfig
 import com.task.airlift_ecommerce_task.data.remote.IBackendApi
 import dagger.Module
@@ -42,6 +43,7 @@ object RetrofitModule {
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(httpClient)
             .build()
         return retrofit.create(IBackendApi::class.java)

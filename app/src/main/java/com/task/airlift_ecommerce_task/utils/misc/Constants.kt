@@ -4,4 +4,7 @@ object Constants {
     // Database
     const val DATABASE_VERSION = 1
     const val DATABASE_NAME = "ecommerce.db"
+
+    // Others
+    const val GRID_COLUMNS = 2
 }

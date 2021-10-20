@@ -15,11 +15,14 @@
         <action
             android:id="@+id/action_homeFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.task.airlift_ecommerce_task.ui.fragments.categories.CategoriesFragment"
-        android:label="CategoriesFragment" >
+        android:label="CategoriesFragment">
         <action
             android:id="@+id/action_categoriesFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
@@ -27,19 +30,26 @@
     <fragment
         android:id="@+id/productsFragment"
         android:name="com.task.airlift_ecommerce_task.ui.fragments.products.ProductsFragment"
-        android:label="ProductsFragment" >
+        android:label="ProductsFragment">
+        <argument
+            android:name="category"
+            app:argType="string" />
         <action
             android:id="@+id/action_productsFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.task.airlift_ecommerce_task.ui.fragments.productDetails.ProductDetailsFragment"
-        android:label="ProductDetailsFragment" />
+        android:name="com.task.airlift_ecommerce_task.ui.fragments.products.ProductDetailsFragment"
+        android:label="ProductDetailsFragment">
+        <argument
+            android:name="product"
+            app:argType="com.task.airlift_ecommerce_task.data.remote.models.response.ResponseProduct" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.task.airlift_ecommerce_task.ui.fragments.cart.CartFragment"
-        android:label="CartFragment" >
+        android:label="CartFragment">
         <action
             android:id="@+id/action_cartFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />

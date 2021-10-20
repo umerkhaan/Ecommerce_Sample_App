@@ -7,9 +7,13 @@
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/activity_splash.xml" value="0.24010416666666667" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_categories.xml" value="0.25416666666666665" />
-        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_home.xml" value="0.176" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_product_details.xml" value="0.25416666666666665" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_products.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_category.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_category_grid.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_product.xml" value="0.176" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_product_grid.xml" value="0.2" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.25416666666666665" />
       </map>
     </option>

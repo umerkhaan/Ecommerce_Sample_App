@@ -6,14 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.task.airlift_ecommerce_task.R
-import com.task.airlift_ecommerce_task.databinding.FragmentHomeBinding
+import com.task.airlift_ecommerce_task.data.remote.models.response.ResponseProduct
 import com.task.airlift_ecommerce_task.databinding.FragmentProductsBinding
+import com.task.airlift_ecommerce_task.ui.adapters.ProductsAdapter
+import com.task.airlift_ecommerce_task.ui.sharedViewModels.MainViewModel
+import com.task.airlift_ecommerce_task.utils.misc.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class ProductsFragment : Fragment() {
     private lateinit var binding: FragmentProductsBinding
+    private val args: ProductsFragmentArgs by navArgs()
+
+    private val mainViewModel:MainViewModel by activityViewModels()
+    private val productsViewModel: ProductsViewModel by viewModels()
+
+    private lateinit var productsAdapter: ProductsAdapter
+
+    private lateinit var category: String
 
     /////////////////////////////////////////////////////////////////////
     ///////              Fragment Lifecycle Methods
@@ -24,11 +42,15 @@ class ProductsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_products, container, false)
+        if (!::binding.isInitialized
+            || productsAdapter.itemCount == 0
+        ) {
+            binding =
+                DataBindingUtil.inflate(inflater, R.layout.fragment_products, container, false)
 
-        setupViews()
-        setupViewsListeners()
+            setupViews()
+            setupViewsListeners()
+        }
 
         return binding.root
     }
@@ -38,10 +60,59 @@ class ProductsFragment : Fragment() {
     /////////////////////////////////////////////////////////////////////
 
     private fun setupViews() {
+        activity?.let { a ->
+            category = args.category
 
+            binding.tvTitle.text = category.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+
+            val gridLayoutManager = GridLayoutManager(a, Constants.GRID_COLUMNS)
+            gridLayoutManager.isItemPrefetchEnabled = false
+
+            productsAdapter = ProductsAdapter(ArrayList(), true)
+
+            binding.rvProducts.apply {
+                setHasFixedSize(true)
+                itemAnimator = null
+                adapter = productsAdapter
+                layoutManager = gridLayoutManager
+                isNestedScrollingEnabled = false
+            }
+
+            productsViewModel.getProductsByCategory(category, onResponse = { products ->
+                products?.let {
+                    productsAdapter.setData(it)
+                }
+            })
+        }
     }
 
     private fun setupViewsListeners() {
+        activity?.let { a ->
+            productsAdapter.setListener(object : ProductsAdapter.OnItemTouchListener {
+                override fun onClick(position: Int, product: ResponseProduct) {
+                    val action =
+                        ProductsFragmentDirections.actionProductsFragmentToProductDetailsFragment(
+                            product
+                        )
+                    findNavController().navigate(action)
+                }
 
+                override fun onAddToCartClick(position: Int, product: ResponseProduct) {
+                    product.cartQuantity?.value = product.cartQuantity?.value?.plus(1)
+
+                    mainViewModel.addProductInCart(product)
+                }
+
+                override fun onRemoveFromCartClick(position: Int, product: ResponseProduct) {
+                    product.cartQuantity?.value = product.cartQuantity?.value?.minus(1)
+
+                    mainViewModel.removeProductFromCart(product.id)
+                }
+            })
+        }
     }
 }

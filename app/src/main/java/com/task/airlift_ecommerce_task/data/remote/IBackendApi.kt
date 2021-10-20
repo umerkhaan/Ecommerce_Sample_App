@@ -21,7 +21,7 @@ interface IBackendApi {
     @GET("products/products")
     fun getAllProducts(): Deferred<List<ResponseProduct>?>
 
-    @GET("products/products/{category}")
+    @GET("products/category/{category}")
     fun getProductsByCategory(
         @Path("category")
         category: String
