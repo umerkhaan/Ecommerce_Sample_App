@@ -19,6 +19,8 @@
     <string name="add">Add</string>
     <string name="remove">Remove</string>
     <string name="items_format">Items(%d)</string>
-    <string name="total_ammount_format">Total Amount: Rs. %.2f</string>
+    <string name="total_amount_format">Total Amount: Rs. %.2f</string>
     <string name="cart_is_empty">Cart is Empty</string>
+    <string name="on_checkout">On Checkout cart products will be fetched from database in required format and will be submitted to an API.</string>
+    <string name="product">Product</string>
 </resources>

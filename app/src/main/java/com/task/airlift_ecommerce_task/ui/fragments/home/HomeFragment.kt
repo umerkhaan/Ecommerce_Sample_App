@@ -3,6 +3,8 @@ package com.task.airlift_ecommerce_task.ui.fragments.home
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -71,6 +73,9 @@ class HomeFragment : Fragment() {
 
             if (!bindingAvailable) {
                 // Setup Categories
+
+                binding.lytShimmerCategories.visibility = VISIBLE
+
                 linearLayoutManager = LinearLayoutManager(a, LinearLayoutManager.HORIZONTAL, false)
                 linearLayoutManager.isItemPrefetchEnabled = false
                 categoriesAdapter = CategoriesAdapter(ArrayList())
@@ -85,6 +90,8 @@ class HomeFragment : Fragment() {
             }
 
             // Setup Recommended
+            binding.lytShimmerProducts.visibility = VISIBLE
+
             linearLayoutManager = LinearLayoutManager(a, LinearLayoutManager.HORIZONTAL, false)
             linearLayoutManager.isItemPrefetchEnabled = false
 
@@ -148,12 +155,14 @@ class HomeFragment : Fragment() {
                     homeViewModel.getAllCategories(onResponse = { categories ->
                         categories?.let {
                             categoriesAdapter.setData(it)
+                            binding.lytShimmerCategories.visibility = GONE
                         }
                     })
 
                     homeViewModel.getRecommendedProducts(onResponse = { products ->
                         products?.let {
                             productsAdapter.setData(it)
+                            binding.lytShimmerProducts.visibility = GONE
                         }
                     })
                 }

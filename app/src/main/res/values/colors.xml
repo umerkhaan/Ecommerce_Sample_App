@@ -4,6 +4,7 @@
     <color name="colorPrimaryVariant">#FFFFFF</color>
     <color name="colorOnPrimary">#181818</color>
     <color name="colorAccent">#4CAF50</color>
+    <color name="colorAccentDark">#419545</color>
 
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorBackgroundSecondary">#E4E4E4</color>
@@ -35,6 +36,7 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorDullWhite">#dadada</color>
     <color name="colorGrey">#979797</color>
+    <color name="colorLightGrey">#C3C3C3</color>
     <color name="colorWhiteA80">#CCFFFFFF</color>
     <color name="colorWhiteA70">#B3FFFFFF</color>
     <color name="colorWhiteA60">#99FFFFFF</color>

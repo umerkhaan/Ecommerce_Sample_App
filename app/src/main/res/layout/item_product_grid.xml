@@ -65,11 +65,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_price" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add_to_cart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
             android:text="@string/add_to_cart"
+            android:background="@drawable/bg_button"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="@dimen/_5sdp"
             android:textAllCaps="false"
             android:visibility="@{item.cartQuantity==0?View.VISIBLE:View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -78,6 +81,8 @@
             android:id="@+id/lyt_add_remove"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_border_accent"
             android:visibility="@{item.cartQuantity>0?View.VISIBLE:View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/tv_title">
 

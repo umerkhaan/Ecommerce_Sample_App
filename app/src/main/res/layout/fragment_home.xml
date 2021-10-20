@@ -105,12 +105,46 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_categories"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/lyt_categories"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_shop_by_category" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_shop_by_category">
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/lyt_shimmer_categories"
+                            android:layout_width="match_parent"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <include layout="@layout/item_category_shimmer" />
+
+                                <include layout="@layout/item_category_shimmer" />
+
+                                <include layout="@layout/item_category_shimmer" />
+
+                                <include layout="@layout/item_category_shimmer" />
+
+                                <include layout="@layout/item_category_shimmer" />
+
+                            </LinearLayout>
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_categories"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:id="@+id/tv_recommended"
@@ -123,14 +157,44 @@
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rv_categories" />
+                        app:layout_constraintTop_toBottomOf="@id/lyt_categories" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_products"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/lyt_products"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_recommended" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_recommended">
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/lyt_shimmer_products"
+                            android:layout_width="match_parent"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <include layout="@layout/item_product_shimmer" />
+
+                                <include layout="@layout/item_product_shimmer" />
+
+                                <include layout="@layout/item_product_shimmer" />
+
+                            </LinearLayout>
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_products"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

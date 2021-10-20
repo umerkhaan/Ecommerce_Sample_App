@@ -33,6 +33,57 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/lyt_shimmer_products"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lyt_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                    <include layout="@layout/item_product_grid_shimmer" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_products"
             android:layout_width="match_parent"

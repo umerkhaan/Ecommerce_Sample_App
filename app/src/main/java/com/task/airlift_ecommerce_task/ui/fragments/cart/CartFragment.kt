@@ -6,21 +6,17 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.task.airlift_ecommerce_task.R
 import com.task.airlift_ecommerce_task.data.db.entities.Product
-import com.task.airlift_ecommerce_task.data.remote.models.response.ResponseProduct
 import com.task.airlift_ecommerce_task.databinding.FragmentCartBinding
 import com.task.airlift_ecommerce_task.ui.adapters.CartProductsAdapter
-import com.task.airlift_ecommerce_task.ui.adapters.ProductsAdapter
-import com.task.airlift_ecommerce_task.ui.fragments.products.ProductsFragmentDirections
 import com.task.airlift_ecommerce_task.ui.sharedViewModels.MainViewModel
-import com.task.airlift_ecommerce_task.utils.misc.Constants
+import com.task.airlift_ecommerce_task.utils.SingleToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,6 +73,14 @@ class CartFragment : Fragment() {
 
     private fun setupViewsListeners() {
         activity?.let { a ->
+            binding.btnCheckout.setOnClickListener {
+                SingleToastUtil.show(
+                    a.applicationContext,
+                    getString(R.string.on_checkout),
+                    Toast.LENGTH_LONG
+                )
+            }
+
             cartAdapter.setListener(object : CartProductsAdapter.OnItemTouchListener {
                 override fun onClick(position: Int, product: Product) {
 
@@ -127,7 +131,7 @@ class CartFragment : Fragment() {
         if (!mainViewModel.getCartItemsTotalPrice().hasActiveObservers()) {
             mainViewModel.getCartItemsTotalPrice().observe(viewLifecycleOwner) { price ->
                 binding.tvTotalPrice.text =
-                    String.format(getString(R.string.total_ammount_format), price)
+                    String.format(getString(R.string.total_amount_format), price)
             }
         }
     }

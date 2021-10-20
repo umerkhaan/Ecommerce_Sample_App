@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/drawable/bg_border_accent.xml" value="0.14635416666666667" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/drawable/bg_border_secondary.xml" value="0.2703125" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/drawable/bg_button.xml" value="0.2703125" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/drawable/bg_button_default.xml" value="0.2703125" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/drawable/bg_button_disabled.xml" value="0.2703125" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/drawable/bg_button_focused.xml" value="0.2703125" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/drawable/bg_button_pressed.xml" value="0.2703125" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/activity_splash.xml" value="0.24010416666666667" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/fragment_cart.xml" value="0.25416666666666665" />
@@ -13,8 +20,11 @@
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_category.xml" value="0.25416666666666665" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_category_grid.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_category_shimmer.xml" value="0.25416666666666665" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_product.xml" value="0.176" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_product_grid.xml" value="0.2" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_product_grid_shimmer.xml" value="0.25416666666666665" />
+        <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/layout/item_product_shimmer.xml" value="0.25416666666666665" />
         <entry key="..\:/@Android/projects/airlift_ecommerce_task/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.25416666666666665" />
       </map>
     </option>

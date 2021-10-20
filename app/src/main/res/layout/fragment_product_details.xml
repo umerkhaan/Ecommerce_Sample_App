@@ -119,6 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@{product.description}"
                     android:textColor="@color/colorTextPrimary"
@@ -126,11 +127,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_product_price" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_add_to_cart"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/colorWhite"
                     android:text="@string/add_to_cart"
                     android:textAllCaps="false"
                     android:visibility="@{product.cartQuantity==0?View.VISIBLE:View.GONE}"
@@ -139,7 +144,11 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/lyt_add_remove"
                     android:layout_width="match_parent"
+                    android:background="@drawable/bg_border_accent"
                     android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:visibility="@{product.cartQuantity>0?View.VISIBLE:View.GONE}"
                     app:layout_constraintTop_toBottomOf="@id/tv_product_description">
 

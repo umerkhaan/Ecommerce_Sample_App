@@ -3,6 +3,8 @@ package com.task.airlift_ecommerce_task.ui.fragments.products
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -69,6 +71,8 @@ class ProductsFragment : Fragment() {
                 ) else it.toString()
             }
 
+            binding.lytShimmerProducts.visibility = VISIBLE
+
             val gridLayoutManager = GridLayoutManager(a, Constants.GRID_COLUMNS)
             gridLayoutManager.isItemPrefetchEnabled = false
 
@@ -85,6 +89,7 @@ class ProductsFragment : Fragment() {
             productsViewModel.getProductsByCategory(category, onResponse = { products ->
                 products?.let {
                     productsAdapter.setData(it)
+                    binding.lytShimmerProducts.visibility = GONE
                 }
             })
         }

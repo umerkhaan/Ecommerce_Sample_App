@@ -49,9 +49,6 @@ class CartProductsAdapter(
             this.lytParent.setOnClickListener {
                 onItemTouchListener?.onClick(position, item)
             }
-            this.btnAddToCart.setOnClickListener {
-                onItemTouchListener?.onAddToCartClick(position, item)
-            }
             this.ibnDelete.setOnClickListener {
                 onItemTouchListener?.onDelete(position, item)
             }
