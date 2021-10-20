@@ -100,9 +100,28 @@ class DataRepository @Inject constructor(
             }
         }
 
+        fun getCartProducts(callback: (products: List<Product>) -> Unit) {
+            coroutineScope.launch {
+                val products = appDatabase.getProductDao().getAllItems()
+                products.forEach {
+                    appDatabase.getCartItemDao().getCartItemByProductId(it.id)?.let { cartItem ->
+                        it.cartQuantity?.postValue(cartItem.quantity)
+                    }
+                }
+
+                launch(Dispatchers.Main) {
+                    callback(products)
+                }
+            }
+        }
+
         // Cart related methods
         fun getCartItemsCount(): LiveData<Int> {
             return appDatabase.getCartItemDao().getCartItemsCount()
+        }
+
+        fun getCartItemsTotalPrice(): LiveData<Double> {
+            return appDatabase.getCartItemDao().getCartItemsTotalPrice()
         }
 
         fun getCartItems(callback: (cartItems: List<CartItem>) -> Unit) {
@@ -154,6 +173,31 @@ class DataRepository @Inject constructor(
             }
         }
 
+        fun addProductInCart(product: Product, callback: (() -> Unit)? = null) {
+            coroutineScope.launch {
+                val cartItem = appDatabase.getCartItemDao().getCartItemByProductId(product.id)
+                cartItem?.apply {
+                    quantity++
+
+                    appDatabase.getCartItemDao().update(this)
+                } ?: run {
+                    appDatabase.getCartItemDao().insert(
+                        CartItem(
+                            productId = product.id,
+                            quantity = 1,
+                            dateTime = Date()
+                        )
+                    )
+                }
+
+                launch(Dispatchers.Main) {
+                    callback?.let {
+                        it()
+                    }
+                }
+            }
+        }
+
         fun removeProductFromCart(id: Int, callback: (() -> Unit)? = null) {
             coroutineScope.launch {
                 val cartItem = appDatabase.getCartItemDao().getCartItemByProductId(id)
@@ -169,6 +213,19 @@ class DataRepository @Inject constructor(
                 } ?: run {
                     appDatabase.getProductDao().removeProduct(id)
                 }
+
+                launch(Dispatchers.Main) {
+                    callback?.let {
+                        it()
+                    }
+                }
+            }
+        }
+
+        fun deleteProductFromCart(id: Int, callback: (() -> Unit)? = null) {
+            coroutineScope.launch {
+                appDatabase.getCartItemDao().removeProductFromCart(id)
+                appDatabase.getProductDao().removeProduct(id)
 
                 launch(Dispatchers.Main) {
                     callback?.let {

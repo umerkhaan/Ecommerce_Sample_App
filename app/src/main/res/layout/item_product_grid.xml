@@ -27,7 +27,7 @@
         android:padding="@dimen/_5sdp">
 
         <ImageView
-            android:id="@+id/iv_category"
+            android:id="@+id/iv_product"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
             android:contentDescription="@string/category"
@@ -49,7 +49,7 @@
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_category" />
+            app:layout_constraintTop_toBottomOf="@id/iv_product" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -92,10 +92,10 @@
                 android:focusable="true"
                 android:padding="@dimen/_5sdp"
                 android:scaleType="fitCenter"
-                app:src="@{item.cartQuantity==1?R.drawable.ic_delete:R.drawable.ic_minus}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:src="@{item.cartQuantity==1?R.drawable.ic_delete:R.drawable.ic_minus}" />
 
             <TextView
                 android:id="@+id/tv_quantity"
@@ -103,6 +103,8 @@
                 android:layout_height="wrap_content"
                 android:text="@{item.cartQuantity.toString()}"
                 android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/ibn_add"
                 app:layout_constraintStart_toEndOf="@id/ibn_remove"

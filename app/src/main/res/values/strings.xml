@@ -14,4 +14,11 @@
     <string name="back">Back</string>
     <string name="banner">Banner</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="checkout">Checkout</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="items_format">Items(%d)</string>
+    <string name="total_ammount_format">Total Amount: Rs. %.2f</string>
+    <string name="cart_is_empty">Cart is Empty</string>
 </resources>

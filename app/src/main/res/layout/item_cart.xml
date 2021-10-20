@@ -16,20 +16,35 @@
 
         <variable
             name="item"
-            type="com.task.airlift_ecommerce_task.data.remote.models.response.ResponseProduct" />
+            type="com.task.airlift_ecommerce_task.data.db.entities.Product" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lyt_parent"
-        android:layout_width="@dimen/_120sdp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_5sdp">
 
+        <ImageButton
+            android:id="@+id/ibn_delete"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/delete"
+            android:focusable="true"
+            android:padding="@dimen/_5sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_cross"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/iv_product"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="@dimen/_110sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:contentDescription="@string/category"
             android:padding="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,11 +59,25 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{StringUtils.INSTANCE.getPrice(item.price)}"
+            android:text="@{StringUtils.INSTANCE.getPrice(item.price, item.cartQuantity)}"
             android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_product" />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{StringUtils.INSTANCE.getTotalPrice(item.price, item.cartQuantity)}"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_product" />
 
         <TextView
@@ -88,24 +117,24 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="@string/back"
+                android:contentDescription="@string/remove"
                 android:focusable="true"
                 android:padding="@dimen/_5sdp"
                 android:scaleType="fitCenter"
-                app:src="@{item.cartQuantity==1?R.drawable.ic_delete:R.drawable.ic_minus}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:src="@{item.cartQuantity==1?R.drawable.ic_delete:R.drawable.ic_minus}" />
 
             <TextView
                 android:id="@+id/tv_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{item.cartQuantity.toString()}"
                 android:textColor="@color/colorTextPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold"
-                android:text="@{item.cartQuantity.toString()}"
                 app:layout_constraintEnd_toStartOf="@id/ibn_add"
                 app:layout_constraintStart_toEndOf="@id/ibn_remove"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +146,7 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:contentDescription="@string/back"
+                android:contentDescription="@string/add"
                 android:focusable="true"
                 android:padding="@dimen/_5sdp"
                 android:scaleType="fitCenter"

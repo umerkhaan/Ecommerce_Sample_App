@@ -98,6 +98,8 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.getCartItemsCount().observe(this) { count ->
                 if (count > 0) {
                     binding.bottomNav.getOrCreateBadge(R.id.cartFragment).number = count
+                }else{
+                    binding.bottomNav.removeBadge(R.id.cartFragment)
                 }
             }
         }
