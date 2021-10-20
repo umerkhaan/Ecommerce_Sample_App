@@ -23,4 +23,6 @@
     <string name="cart_is_empty">Cart is Empty</string>
     <string name="on_checkout">On Checkout cart products will be fetched from database in required format and will be submitted to an API.</string>
     <string name="product">Product</string>
+    <string name="something_went_wrong_loading">Something went wrong while loading %s</string>
+    <string name="task">Task</string>
 </resources>

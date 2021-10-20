@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,6 +19,7 @@ import com.task.airlift_ecommerce_task.data.remote.models.response.ResponseProdu
 import com.task.airlift_ecommerce_task.databinding.FragmentProductsBinding
 import com.task.airlift_ecommerce_task.ui.adapters.ProductsAdapter
 import com.task.airlift_ecommerce_task.ui.sharedViewModels.MainViewModel
+import com.task.airlift_ecommerce_task.utils.SingleToastUtil
 import com.task.airlift_ecommerce_task.utils.misc.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -28,7 +30,7 @@ class ProductsFragment : Fragment() {
     private lateinit var binding: FragmentProductsBinding
     private val args: ProductsFragmentArgs by navArgs()
 
-    private val mainViewModel:MainViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private val productsViewModel: ProductsViewModel by viewModels()
 
     private lateinit var productsAdapter: ProductsAdapter
@@ -91,6 +93,12 @@ class ProductsFragment : Fragment() {
                     productsAdapter.setData(it)
                     binding.lytShimmerProducts.visibility = GONE
                 }
+            }, onFailure = {
+                SingleToastUtil.show(
+                    a,
+                    String.format(getString(R.string.something_went_wrong_loading), "products"),
+                    Toast.LENGTH_LONG
+                )
             })
         }
     }

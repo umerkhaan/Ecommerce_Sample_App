@@ -88,6 +88,7 @@ class CartProductsAdapter(
         objects.removeAt(position)
 
         notifyItemRemoved(position)
+        notifyItemRangeChanged(position, objects.size)
     }
 
     /////////////////////////////////////////////////////////////////////

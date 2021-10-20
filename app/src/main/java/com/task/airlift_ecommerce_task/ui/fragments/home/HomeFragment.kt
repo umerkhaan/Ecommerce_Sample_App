@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,6 +20,7 @@ import com.task.airlift_ecommerce_task.databinding.FragmentHomeBinding
 import com.task.airlift_ecommerce_task.ui.adapters.CategoriesAdapter
 import com.task.airlift_ecommerce_task.ui.adapters.ProductsAdapter
 import com.task.airlift_ecommerce_task.ui.sharedViewModels.MainViewModel
+import com.task.airlift_ecommerce_task.utils.SingleToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -149,44 +151,72 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupLiveDataObservers() {
-        if (!mainViewModel.isNetworkAvailable.hasActiveObservers()) {
-            mainViewModel.isNetworkAvailable.observe(viewLifecycleOwner) { isNetworkAvailable ->
-                if (isNetworkAvailable) {
-                    homeViewModel.getAllCategories(onResponse = { categories ->
-                        categories?.let {
-                            categoriesAdapter.setData(it)
-                            binding.lytShimmerCategories.visibility = GONE
-                        }
-                    })
+       activity?.let{a->
+           if (!mainViewModel.isNetworkAvailable.hasActiveObservers()) {
+               mainViewModel.isNetworkAvailable.observe(viewLifecycleOwner) { isNetworkAvailable ->
+                   if (isNetworkAvailable) {
+                       homeViewModel.getAllCategories(onResponse = { categories ->
+                           categories?.let {
+                               categoriesAdapter.setData(it)
+                               binding.lytShimmerCategories.visibility = GONE
+                           }
+                       }, onFailure = {
+                           SingleToastUtil.show(
+                               a,
+                               String.format(getString(R.string.something_went_wrong_loading), "categories"),
+                               Toast.LENGTH_LONG
+                           )
+                       })
 
-                    homeViewModel.getRecommendedProducts(onResponse = { products ->
-                        products?.let {
-                            productsAdapter.setData(it)
-                            binding.lytShimmerProducts.visibility = GONE
-                        }
-                    })
-                }
-            }
-        }
+                       homeViewModel.getRecommendedProducts(onResponse = { products ->
+                           products?.let {
+                               productsAdapter.setData(it)
+                               binding.lytShimmerProducts.visibility = GONE
+                           }
+                       }, onFailure = {
+                           SingleToastUtil.show(
+                               a,
+                               String.format(getString(R.string.something_went_wrong_loading), "products"),
+                               Toast.LENGTH_LONG
+                           )
+                       })
+                   }
+               }
+           }
 
-        if (!homeViewModel.refreshing.hasActiveObservers()) {
-            homeViewModel.refreshing.observe(viewLifecycleOwner) { refreshing ->
-                if (refreshing) {
-                    homeViewModel.getAllCategories(onResponse = { categories ->
-                        categories?.let {
-                            categoriesAdapter.setData(it)
-                        }
-                    })
+           if (!homeViewModel.refreshing.hasActiveObservers()) {
+               homeViewModel.refreshing.observe(viewLifecycleOwner) { refreshing ->
+                   if (refreshing) {
+                       homeViewModel.getAllCategories(onResponse = { categories ->
+                           categories?.let {
+                               categoriesAdapter.setData(it)
+                           }
+                       }, onFailure = {
+                           SingleToastUtil.show(
+                               a,
+                               String.format(getString(R.string.something_went_wrong_loading), "categories"),
+                               Toast.LENGTH_LONG
+                           )
+                       })
 
-                    homeViewModel.getRecommendedProducts(onResponse = { products ->
-                        products?.let {
-                            productsAdapter.setData(it)
+                       homeViewModel.getRecommendedProducts(onResponse = { products ->
+                           products?.let {
+                               productsAdapter.setData(it)
 
-                            homeViewModel.refreshing.value = false
-                        }
-                    })
-                }
-            }
-        }
+                               homeViewModel.refreshing.value = false
+                           }
+                       }, onFailure = {
+                           SingleToastUtil.show(
+                               a,
+                               String.format(getString(R.string.something_went_wrong_loading), "products"),
+                               Toast.LENGTH_LONG
+                           )
+
+                           homeViewModel.refreshing.value = false
+                       })
+                   }
+               }
+           }
+       }
     }
 }
